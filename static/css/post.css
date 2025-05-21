@@ -1,0 +1,148 @@
+.postsContiner {
+    padding: 50px;
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.postsContiner ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);      
+}
+
+.categoryContainer , .postTitle {
+    font-family: Georgia;
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    gap: 10px;
+}
+.postTitle {
+    padding-bottom:10px;
+}
+
+.category {
+    background-color: #d0d1d26f;
+    border-radius: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.content {
+    display: flex;
+    padding: 10px;
+    color: rgb(70, 70, 70);
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-start;
+    gap:7px;
+}
+
+.postFooter{
+    display: flex;
+    flex-direction: row;
+    gap:25px;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.postUser p {
+    color: rgb(70, 70, 70);
+}
+
+.postTime {
+    padding-left: 10px;
+}
+
+.like-form, .dislike-form {
+    display: inline-block; 
+    margin: 0; 
+    padding: 0; 
+    border: none;
+    background: none; 
+}
+
+.like-button, .dislike-button , .comment-button {
+    background-color: transparent; 
+    border: none; 
+    padding: 0;
+    cursor: pointer;
+    font-size: 1.2em; 
+}
+
+.like-button:hover , .dislike-button , .comment-button{
+    background-color: transparent;
+}
+
+.like-button i , .dislike-button i , .comment-button i {
+    color: #22333B; 
+}
+
+.postFooter i:hover  {
+    color: rgb(0, 187, 187);
+}
+
+#like.selected , #dislike.selected {
+    color: rgb(0, 187, 187);
+}
+
+/*.like-button:focus {
+    outline: none;
+}*/
+
+
+.postUser .profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.postUser .profile-info img {
+    margin-right: 10px; /* Adjust the space between the image and the username */
+}
+
+.postUser .profile-info .username {
+    margin: 0; /* Reset margin for the paragraph to ensure it's aligned properly */
+}
+
+.postsContiner {
+    max-width: 100%;         /* Ensure the container doesn't exceed its parent's width */
+    overflow-wrap: break-word; /* Allows long words to break and wrap to the next line */
+    word-wrap: break-word;     /* Ensures compatibility with older browsers */
+    word-break: break-word;    /* Breaks long words at arbitrary points */
+    box-sizing: border-box;    /* Include padding and border in the element's total width and height */
+}
+
+.content {
+    display: block;           /* Ensure it's treated as a block element */
+    width: 100%;              /* Make sure it takes the full width of its container */
+    margin: 0;                /* Reset default margins */
+    padding: 10px;            /* Padding inside the content */
+    color: rgb(70, 70, 70);   /* Text color */
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+
+    .postsContiner {
+        padding-left: 0px;
+    }
+}

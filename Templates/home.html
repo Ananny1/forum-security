@@ -1,0 +1,101 @@
+{{define "title"}}Home - CatChat{{end}}
+
+{{define "content"}}
+
+<h1>Posts</h1>
+<div class="postsContiner">
+    {{if .Posts}}
+    <ul>
+        {{range .Posts}}
+        <div class="post">
+            <div class="postUser">
+                {{if eq .Gender "male"}}
+                <div class="profile-info">
+                    <img id="pfp" class="profile-pic" src="static/img/male.webp" alt="male pfp">
+                    <p class="username">{{.Username}}</p>
+                </div>
+                {{else if eq .Gender "female"}}
+                <div class="profile-info">
+                    <img id="pfp" class="profile-pic" src="static/img/female.png" alt="female pfp">
+                    <p class="username">{{.Username}}</p>
+                </div>
+                {{else if or (eq .Gender "Google") (eq .Gender "Github")}}
+                <div class="profile-info">
+                    <img id="pfp" class="profile-pic" src="{{.ProfilePicture}}" alt="pfp">
+                    <p class="username">{{.Username}}</p>
+                </div>
+                {{end}}
+            </div>
+            <div class="postTitle">
+                <h3><strong>{{.Title}}</strong></h3>
+            </div>
+            <div class="categoryContainer">
+                {{range .Category}}
+                <div class="category">
+                    <h7>{{.}}</h7>
+                </div>
+                {{end}}
+            </div>
+            <p class="content">{{.Content}}</p>
+            <p class="postTime">{{.CreatedAt}}</p>
+            <div class="postFooter">
+                <div class="actions">
+                    {{if eq $.CurrentUser.Username "guest"}}
+                    <form action="/login" method="post">
+                        <button type="submit" id="like" class="like-button"><i class='bx bx-like'></i></button>
+                    </form>
+                    <span>{{.Like}}</span>
+
+                    <form action="/login" method="post">
+                        <button type="submit" id="dislike" class="like-button"><i class='bx bx-dislike'></i></button>
+                    </form>
+                    <span>{{.Dislike}}</span>
+
+                    {{else}}
+
+                    <form id="like-form-{{.ID}}" method="post" style="display:inline;">
+                        <input type="hidden" name="postID" value="{{.ID}}">
+                        <button type="button" id="like-{{.ID}}" class="like-button" onclick="likePost('{{.ID}}')">
+                            {{ if .Likedbyuser }}
+                            <i class='bx bxs-like'></i>
+                            {{ else }}
+                            <i class='bx bx-like'></i>
+                            {{end}}
+                        </button>
+                    </form>
+                    <span id="like-count-{{.ID}}">{{.Like}}</span>
+                    <form id="dislike-form-{{.ID}}" method="post" style="display:inline;">
+                        <input type="hidden" name="postID" value="{{.ID}}">
+                        <button type="button" id="dislike-{{.ID}}" class="like-button" onclick="dislikePost('{{.ID}}')">
+                            {{ if .Dislikedbyuser }}
+                            <i class='bx bxs-dislike'></i>
+                            {{ else }}
+                            <i class='bx bx-dislike'></i>
+                            {{end}}
+                        </button>
+                    </form>
+                    <span id="dislike-count-{{.ID}}">{{.Dislike}}</span>
+
+
+                    {{end}}
+                    <form action="/comment" method="get" style="display:inline;">
+                        <input type="hidden" name="postID" value="{{.ID}}">
+                        <button type="submit" class="like-button"><i class='bx bx-chat'></i></button>
+                    </form>
+                    <span>{{.Comment}}</span>
+                </div>
+            </div>
+        </div>
+        {{end}}
+    </ul>
+    {{else}}
+    <p> There are no posts found.. </p>
+    {{end}}
+</div>
+{{end}}
+
+
+{{define "scripts"}}
+<script src="/static/javascript/createpost.js"></script>
+<script src="/static/javascript/likes.js"></script>
+{{end}}

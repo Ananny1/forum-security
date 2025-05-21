@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="/static/css/login_register.css">
+    <link rel="icon" href="/static/img/cat.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="mainPage">
+        <div class="registerContainer">
+            <div class="form-box">
+                <h2>Login</h2>
+                <form id="loginForm" action="/login" method="POST">
+                    <div class="input-box">
+                        <input id="username" type="text" name="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="input-box">
+                        <input id="password" type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <button type="submit" class="btn">Log In</button>
+                    <div class="error">
+                        {{if eq . "invalidUser"}}
+                        <label id="error">Invalid username or password</label>
+                        {{end}}
+                    </div>
+                    <div class="ggh">
+                    <div class="logingg">
+                        <a href="/auth/google/login">
+                            <i class="bx bxl-google bx-lg" ></i>
+                        </a>
+                        </div>
+                    <div class="logingh">
+                        <a href="/auth/github/login">
+                            <i class="bx bxl-github bx-lg"></i>
+                        </a>
+                    </div>
+     
+                </div>
+                    <div class="login-register">
+                        <p>Don't have an account? <a href="register" id="register">Sign Up</a></p>
+                    </div>
+
+                    <div class="guest">
+                        <a href="/" id="guest">Continue as a guest</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="cat">
+            <div class="ear ear--left"></div>
+            <div class="ear ear--right"></div>
+            <div class="face">
+                <div class="eye eye--left">
+                    <div class="eye-pupil"></div>
+                </div>
+                <div class="eye eye--right">
+                    <div class="eye-pupil"></div>
+                </div>
+                <div class="muzzle"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<!--js script to not allow empty data feilds-->
+<script>
+    const form = document.getElementById('loginForm')
+
+    form.addEventListener('submit',
+        (event) => {
+            const userNameFeild = document.getElementById('username')
+            const passwordFeild = document.getElementById('password')
+
+            if (userNameFeild.value.trim() === '') {
+                event.preventDefault();
+                alert('Username feild cannot be empty.. Try again.')
+                return
+            }
+            if (passwordFeild.value.trim() === '') {
+                event.preventDefault();
+                alert('Password feild cannot be empty.. Try again.')
+                return
+            }
+        }
+    );
+
+    // This part of the script handles 401 Unauthorized
+
+</script>

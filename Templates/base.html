@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ block "title" . }}CatChat{{ end }}</title>
+    <link rel="icon" href="/static/img/cat.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/post.css">
+    {{ block "styles" . }}{{ end }}
+</head>
+<body>
+    <div class="sidebar">
+        <div class="top"></div>
+        <div class="logo">
+            <i class="bx bxs-cat"></i>
+            <span>catchat</span>
+        </div>
+        <i class="bx bx-menu" id="btn"></i>
+        <div class="user"> </div>
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="bx bxs-home-heart"></i>
+                    <span class="nav-item">home</span>
+                </a>
+                <span class="tooltip">home</span>
+            </li>
+            <li>
+                <a href="/category">
+                    <i class="bx bxs-category-alt"></i>
+                    <span class="nav-item">category</span>
+                </a>
+                <span class="tooltip">category</span>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <h1><i class="bx bxs-cat"></i> CatChat!</h1>
+            {{if eq .CurrentUser.Gender "male"}}
+            <div class="dropdown">
+                <h5>{{.CurrentUser.Username}} <img id="pfp" class="profile-pic" src="/static/img/male.webp" alt="male pfp">
+                </h5>
+                <i class="bx bx-chevron-down"></i>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+            {{else if eq .CurrentUser.Gender "female"}}
+            <div class="dropdown">
+                <h5>{{.CurrentUser.Username}} <img id="pfp" class="profile-pic" src="/static/img/female.png" alt="female pfp">
+                </h5>
+                <i class="bx bx-chevron-down"></i>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+            {{else if or (eq .CurrentUser.Gender "Google") (eq .CurrentUser.Gender "Github")}}
+            <div class="dropdown">
+                <h5>{{.CurrentUser.Username}} <img id="pfp" class="profile-pic" src="{{.CurrentUser.ProfilePicture}}"
+                        alt="pfp">
+                </h5>
+                <i class="bx bx-chevron-down"></i>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+            {{else}}
+            <h5>Interested? <a href="/login" id="register">Login!</a></h5>
+            {{end}}
+        </div>
+        <!-- Main content block -->
+        {{ block "content" . }}{{ end }}
+    </div>
+    <!-- Conditional Footer -->
+    {{if or (eq .CurrentUser.Gender "male") (eq .CurrentUser.Gender "female") (eq .CurrentUser.Gender "Google") (eq
+    .CurrentUser.Gender "Github")}}
+    <footer>
+        <div class="newpost">
+            <i class="bx bxs-add-to-queue"></i>
+            <form id="postForm" action="/createpost" method="post">
+                <label for="title">title:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" rows="10" required></textarea>
+                <div id="category">
+                    <p>Category:</p>
+                    <label><input type="checkbox" name="category" value="Sport"> Sport</label>
+                    <label><input type="checkbox" name="category" value="Gaming"> Gaming</label>
+                    <label><input type="checkbox" name="category" value="Art"> Art</label>
+                    <label><input type="checkbox" name="category" value="Education"> Education</label>
+                    <label><input type="checkbox" name="category" value="Food"> Food</label>
+                </div>
+                <button type="submit" id="submitPost">Create Post</button>
+            </form>
+        </div>
+    </footer>
+    {{end}}
+    <script src="/static/javascript/sidebar.js"></script>
+    <script src="/static/javascript/dropdown.js"></script>
+    {{ block "scripts" . }}{{ end }}
+</body>
+</html>

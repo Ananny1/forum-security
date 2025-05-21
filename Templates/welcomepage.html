@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/welcome.css">
+    <title>Welcome to Our CatChat</title>
+    <script type="text/javascript">
+        function redirect() {
+            setTimeout(function() {
+                window.location.href = "/";
+            }, 5000); // 5000 milliseconds = 5 seconds
+        }
+    </script>
+</head>
+<body onload="redirect()">
+    <div class="container">
+        <header>
+            <div class="cat">
+                <div class="ear ear--left"></div>
+                <div class="ear ear--right"></div>
+                <div class="face">
+                    <div class="eye eye--left">
+                        <div class="eye-pupil"></div>
+                    </div>
+                    <div class="eye eye--right">
+                        <div class="eye-pupil"></div>
+                    </div>
+                    <div class="muzzle"></div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <h1>Welcome to Our CatChat!</h1>
+            <p>Join our community and start engaging in meaningful discussions.</p>
+            <a href="/" class="btn">Enter CatChat</a>
+        </main>
+    </div>
+</body>
+</html>

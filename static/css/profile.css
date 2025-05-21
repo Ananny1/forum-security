@@ -1,0 +1,119 @@
+/* General layout setup */
+html {
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for the profile and content sections */
+/*.container {
+    display: flex;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens
+}*/
+
+/* Adjusting the profile section */
+.profile-section {
+    width: 20rem; /* Fixed width in rem units */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.25rem; /* Margin in rem units for better scaling */
+}
+
+/* Adjusted content section to fit next to profile section */
+.content-section {
+    flex: 1; /* Allows content section to take remaining space */
+    border: 0.0625rem solid #2c3e50; /* Border width in rem units */
+    border-radius: 0.625rem; /* Border radius in rem units */
+    background-color: #22333B;
+    color: #fff;
+    margin: 1.25rem; /* Margin in rem units */
+    padding: 1.25rem; /* Padding in rem units */
+}
+
+/* Styling for the profile info and buttons */
+.profile-info-rectangle {
+    width: 100%;
+    padding: 1.25rem; /* Padding in rem units */
+    border: 0.0625rem solid #2c3e50; /* Border width in rem units */
+    border-radius: 0.625rem; /* Border radius in rem units */
+    background-color: #22333B;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1.25rem; /* Margin in rem units */
+}
+
+.profile-pic-large {
+    width: 6.25rem; /* Width in rem units */
+    height: 6.25rem; /* Height in rem units */
+    border-radius: 50%;
+    margin-bottom: 1.25rem; /* Margin in rem units */
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center; /* Center buttons horizontally */
+}
+
+.like-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.newpost-button1 {
+    width: 100%;
+    background-color: #22333B;
+    color: #fff;
+    padding: 0.625rem; /* Padding in rem units */
+    border: none;
+    border-radius: 0.3125rem; /* Border radius in rem units */
+    font-size: 0.875rem; /* Font size in rem units */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 0.625rem; /* Space between buttons in rem units */
+}
+
+.like-buttons-container form {
+    width: 100%;
+}
+
+.newpost-button1:hover {
+    background-color: #1a242e;
+}
+
+/*.main-content {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping for smaller screens 
+    padding: 1.25rem; /* Padding in rem units 
+    align-items: flex-start;
+}
+
+.mainn {
+    position: relative;
+    background-color: #fff;
+    min-height: 100vh;
+    top: 0;
+    left: 80px;
+    transition: all 0.5s ease;
+    width: calc(100% - 80px);
+    padding: 1rem;
+}*/
+
+.Profile-container {
+    display: flex;
+    justify-content: center;
+}
+
+.postsContiner h2 {
+    margin-bottom: 30px;
+}

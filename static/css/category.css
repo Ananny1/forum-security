@@ -1,0 +1,59 @@
+.categoryForm {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.categoryButtons {
+    display: flex;
+    flex-direction: row;
+}
+
+.categoryButtons label {
+    margin: 0 10px;
+    background-color: #22333B;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.categoryButtons label:hover {
+    background-color: #4bd8ffd9;
+}
+
+
+.categoryForm .categorySubmitButton,
+.searchButton {
+    margin-left: 10px;
+    background-color: #4bd8ffd9;
+    border: none;
+    color: #22333B;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    padding: 10px 20px;
+}
+
+.categoryForm .categorySubmitButton:hover,
+.searchButton:hover {
+    background-color: #22333B;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+
+    .categorySubmitButton , .categoryButtons {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatChat</title>
+    <link rel="icon" href="/static/img/cat.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/post.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="top"></div>
+        <div class="logo">
+            <i class="bx bxs-cat"></i>
+            <span>catchat</span>
+        </div>
+        <i class="bx bx-menu" id="btn"></i>
+        <div class="user"> </div>
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="bx bxs-home-heart"></i>
+                    <span class="nav-item">home</span>
+                </a>
+                <span class="tooltip">home</span>
+            </li>
+            <li>
+                <a href="/category">
+                    <i class="bx bxs-category-alt"></i>
+                    <span class="nav-item">category</span>
+                </a>
+                <span class="tooltip">category</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1><i class="bx bxs-cat"></i> CatChat!</h1>
+            {{if eq .Gender "male"}}
+            <div class="dropdown">
+                <h5>{{.Username}} <img id="pfp" class="profile-pic" src="/static/img/male.webp" alt="male pfp"></h5>
+                <i class="bx bx-chevron-down"></i>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+            {{else if eq .Gender "female"}}
+            <div class="dropdown">
+                <h5>{{.Username}} <img id="pfp" class="profile-pic" src="/static/img/female.png" alt="female pfp">
+                </h5>
+                <i class="bx bx-chevron-down"></i>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+            {{else if or (eq .Gender "Google") (eq .Gender "Github")}}
+                        <div class="dropdown">
+                <h5>{{.Username}} <img id="pfp" class="profile-pic" src="{{.ProfilePicture}}" alt="pfp">
+                </h5>
+                <i class="bx bx-chevron-down"></i>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+            {{else}}
+            <h5>Interested? <a href="/login" id="register">Login!</a></h5>
+            {{end}}
+        </div>
+
+        <div class="Profile-container">
+            <div class="profile-section">
+                <div class="profile-info-rectangle">
+                    {{if eq .Gender "male"}}
+                    <img src="/static/img/male.webp" alt="Profile Picture" class="profile-pic-large">
+                    <p><strong>Username:</strong> {{.Username}}</p>
+                    <p><strong>Email:</strong> {{.Email}}</p>
+                    <p><strong>Gender:</strong> {{.Gender}}</p>
+                </div>
+                <div class="buttons-container">
+                    <button class="newpost-button1" onclick="window.location.href='/logout'">Logout</button>
+                    <div class="like-buttons-container">
+                        <form class="createdposts-form" action="/profile" method="get">
+                            <input type="hidden" name="type" value="Created-Post">
+                            <button type="submit" class="newpost-button1">User's Posts</button>
+                        </form>
+                        <form class="likedposts-form" action="/profile" method="get">
+                            <input type="hidden" name="type" value="Liked-Post">
+                            <button type="submit" class="newpost-button1">Liked Posts</button>
+                        </form>
+                    </div>
+                    <!-- <button class="newpost-button1" onclick="window.location.href='/create-post'">Create Post</button> -->
+                </div>
+                {{else if eq .Gender "female"}}
+                <img src="/static/img/female.png" alt="Profile Picture" class="profile-pic-large">
+                <p><strong>Username:</strong> {{.Username}}</p>
+                <p><strong>Email:</strong> {{.Email}}</p>
+                <p><strong>Gender:</strong> {{.Gender}}</p>
+            </div>
+            <div class="buttons-container">
+                <button class="newpost-button1" onclick="window.location.href='/logout'">Logout</button>
+                <div class="like-buttons-container">
+                    <form class="createdposts-form" action="/profile" method="get">
+                        <input type="hidden" name="type" value="Created-Post">
+                        <button type="submit" class="newpost-button1">User's Posts</button>
+                    </form>
+                    <form class="likedposts-form" action="/profile" method="get">
+                        <input type="hidden" name="type" value="Liked-Post">
+                        <button type="submit" class="newpost-button1">Liked Posts</button>
+                    </form>
+                </div>
+                <!-- <button class="newpost-button1" onclick="window.location.href='/create-post'">Create Post</button> -->
+            </div>
+            {{else if or (eq .Gender "Google") (eq .Gender "Github")}}
+                        <img src= "{{.ProfilePicture}}" alt="Profile Picture" class="profile-pic-large">
+            <p><strong>Username:</strong> {{.Username}}</p>
+            <p><strong>Email:</strong> {{.Email}}</p>
+        </div>
+        <div class="buttons-container">
+            <button class="newpost-button1" onclick="window.location.href='/logout'">Logout</button>
+            <div class="like-buttons-container">
+                <form class="createdposts-form" action="/profile" method="get">
+                    <input type="hidden" name="type" value="Created-Post">
+                    <button type="submit" class="newpost-button1">User's Posts</button>
+                </form>
+                <form class="likedposts-form" action="/profile" method="get">
+                    <input type="hidden" name="type" value="Liked-Post">
+                    <button type="submit" class="newpost-button1">Liked Posts</button>
+                </form>
+            </div>
+            <!-- <button class="newpost-button1" onclick="window.location.href='/create-post'">Create Post</button> -->
+        </div>
+            {{end}}
+        </div>
+    </div>
+    <div class="postsContiner">
+        <!-- Main content (result) goes here -->
+        <h2>Result</h2>
+        {{if .RequestedPosts}}
+        {{range .RequestedPosts}}
+        <div class="post">
+            <div class="postUser">
+                {{if eq .Gender "male"}}
+                <div class="profile-info">
+                    <img id="pfp" class="profile-pic" src="static/img/male.webp" alt="male pfp">
+                    <p class="username">{{.Username}}</p>
+                </div>
+                {{else if eq .Gender "female"}}
+                <div class="profile-info">
+                    <img id="pfp" class="profile-pic" src="static/img/female.png" alt="female pfp">
+                    <p class="username">{{.Username}}</p>
+                </div>
+                {{else if or (eq .Gender "Google") (eq .Gender "Github")}}
+                    <div class="profile-info">
+                    <img id="pfp" class="profile-pic" src="{{.ProfilePicture}}" alt="female pfp">
+                    <p class="username">{{.Username}}</p>
+                </div>
+                {{end}}
+            </div>
+            <div class="postTitle">
+                <h3><strong>{{.Title}}</strong></h3>
+            </div>
+            <div class="categoryContainer">
+                {{range .Category}}
+                <div class="category">
+                    <h7>{{.}}</h7>
+                </div>
+                {{end}}
+            </div>
+            <p class="content">{{.Content}}</p>
+            <p class="postTime">{{.CreatedAt}}</p>
+            <div class="postFooter">
+                <div class="actions">
+                    <form id="like-form-{{.ID}}" method="post" style="display:inline;">
+                        <input type="hidden" name="postID" value="{{.ID}}">
+                        <button type="button" id="like-{{.ID}}" class="like-button" onclick="likePost('{{.ID}}')">
+                            {{ if .Likedbyuser }}
+                            <i class='bx bxs-like'></i>
+                            {{ else }}
+                            <i class='bx bx-like'></i>
+                            {{end}}
+                        </button>
+                    </form>
+                    <span id="like-count-{{.ID}}">{{.Like}}</span>
+                    <form id="dislike-form-{{.ID}}" method="post" style="display:inline;">
+                        <input type="hidden" name="postID" value="{{.ID}}">
+                        <button type="button" id="dislike-{{.ID}}" class="like-button" onclick="dislikePost('{{.ID}}')">
+                            {{ if .Dislikedbyuser }}
+                            <i class='bx bxs-dislike'></i>
+                            {{ else }}
+                            <i class='bx bx-dislike'></i>
+                            {{end}}
+                        </button>
+                    </form>
+                    <span id="dislike-count-{{.ID}}">{{.Dislike}}</span>
+
+                    <form action="/comment" method="get" style="display:inline;">
+                        <input type="hidden" name="postID" value="{{.ID}}">
+                        <button type="submit" class="like-button"><i class='bx bx-chat'></i></button>
+                    </form>
+                    <span>{{.Comment}}</span>
+                </div>
+            </div> <!-- Close postFooter -->
+        </div> <!-- Close post -->
+        {{end}}
+        {{else}}
+        <p>Content related to user's activity will appear here.</p>
+        {{end}}
+    </div>
+
+    </div>
+
+    <script src="/static/javascript/sidebar.js"></script>
+    <script src="/static/javascript/dropdown.js"></script>
+    <script src="/static/javascript/likes.js"></script>
+</body>
+
+</html>

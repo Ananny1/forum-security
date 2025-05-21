@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="icon" href="/static/img/cat.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/login_register.css">
+</head>
+
+<body>
+    <div class="mainPage">
+        <div class="registerContainer">
+            <div class="form-box">
+                <h2>Register</h2>
+                <form id="registerForm" action="/register" method="POST">
+                    <div class="input-box">
+                        <input for="username" type="text" id="username" name="username" required>
+                        <label>Username</label>
+                        {{if eq . "user"}}
+                        <label id="UN">Username already taken</label>
+                        {{else if eq . "useremail"}}
+                        <label id="UN">Username already taken</label>
+                        {{else if eq . "empty"}}
+                        <label id="UN">username can't have white spaces</label>
+                        {{end}}
+                    </div>
+                    <div class="input-box">
+                        <input for="email" type="email" id="email" name="email" required>
+                        <label>Email</label>
+                        {{if eq . "email"}}
+
+                        <label id="UN">Email already taken</label>
+                        {{else if eq . "useremail"}}
+                        <label id="UN">Email already taken</label>
+                        {{else if eq . "empty"}}
+                        <label id="UN">Email can't have white spaces</label>
+                        {{end}}
+                    </div>
+                    <div class="input-box">
+                        <input type="password" required id="password">
+                        <label>Password</label>
+                        {{if eq . "password"}}
+                        <label id="UN">Password Can't be under 8 characters</label>
+                        {{else if eq . "empty"}}
+                        <label id="UN">password can't have white space</label>
+                        {{end}}
+                    </div>
+                    <div class="input-box">
+                        <input for="password" type="password" id="verifypassword" name="password" required>
+                        <label>Verify Password</label>
+                    </div>
+                    <div class="input-box">
+                        <select id="selectGender" name="gender" required>
+                            <option value="" disabled selected></option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <label>Gender</label>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                    <div class="login-register">
+                        <p>Already have an account? <a href="login" id="login">Log In</a></p>
+                    </div>
+                    <div class="guest">
+                        <a href="/" id="guest">Continue as a guest</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="cat">
+            <div class="ear ear--left"></div>
+            <div class="ear ear--right"></div>
+            <div class="face">
+                <div class="eye eye--left">
+                    <div class="eye-pupil"></div>
+                </div>
+                <div class="eye eye--right">
+                    <div class="eye-pupil"></div>
+                </div>
+                <div class="muzzle"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<!--js script to not allow empty data feilds-->
+<script>
+    const form = document.getElementById('registerForm')
+
+    form.addEventListener('submit',
+        (event) => {
+            const userNameFeild = document.getElementById('username');
+            const emailFeild = document.getElementById('email');
+            const passwordFeild = document.getElementById('password');
+            const verifyPasswordFeild = document.getElementById('verifypassword');
+            const genderFeild = document.getElementById('');
+            const selectGenderFeild = document.getElementById('selectGender');
+
+            if (userNameFeild.value.trim() === '') {
+                event.preventDefault();
+                alert('Username feild cannot be empty.. Try again.')
+                return
+            }
+            if (emailFeild.value.trim() === '') {
+                event.preventDefault();
+                alert('Email feild cannot be empty.. Try again.')
+                return
+            }
+            if (passwordFeild.value.trim() === '') {
+                event.preventDefault();
+                alert('Password feild cannot be empty.. Try again.')
+                return
+            }
+            if (verifyPasswordFeild.value.trim() === '') {
+                event.preventDefault();
+                alert('Verify password feild cannot be empty.. Try again.')
+                return
+            }
+            if (passwordFeild.value.length < 8) {
+                event.preventDefault();
+                alert('Password must be atleast 8 characters long.. Try again.')
+                return
+            }
+            if (verifyPasswordFeild.value.length < 8) {
+                event.preventDefault();
+                alert('Verify password must be atleast 8 characters long.. Try again.')
+                return
+            }
+            if (selectGenderFeild.value === '') {
+                event.preventDefault();
+                verifyPasswordFeild.classList.add('error')
+                alert('Please choose a gender.. Try again.')
+                return
+            }
+            if (passwordFeild.value != verifyPasswordFeild.value) {
+                event.preventDefault();
+                alert('The verify password is not the same as the password.. Try again.')
+                return
+            }
+            if (passwordFeild.value.trim() === '' || passwordFeild.value.trim() === ' ') {
+                event.preventDefault();
+                alert('Password feild cannot be empty or spaces.. Try again.')
+                return
+            }
+        }
+    );
+</script>

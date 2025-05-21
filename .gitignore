@@ -1,0 +1,5 @@
+# Prevent .env and other secret files from being tracked
+.env
+*.env
+*.key
+*.pem

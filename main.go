@@ -128,10 +128,10 @@ func main() {
 	mux.Handle("/filter", rateLimitMiddleware(http.HandlerFunc(handlerfuncitons.FilterHandler), limiter))
 	mux.Handle("/createcomment", rateLimitMiddleware(http.HandlerFunc(handlerfuncitons.CreateComment), limiter))
 	mux.Handle("/profile", rateLimitMiddleware(http.HandlerFunc(handlerfuncitons.Profilehandler), limiter))
-	mux.Handle("/auth/google/login", rateLimitMiddleware(http.HandlerFunc(auth.GoogleLoginHandler), limiter))
-	mux.Handle("/auth/google/callback", rateLimitMiddleware(http.HandlerFunc(auth.GoogleCallbackHandler), limiter))
-	mux.Handle("/auth/github/login", rateLimitMiddleware(http.HandlerFunc(auth.GitHubHandler), limiter))
-	mux.Handle("/auth/github/callback", rateLimitMiddleware(http.HandlerFunc(auth.GitHubCallbackHandler), limiter))
+	// mux.Handle("/auth/google/login", rateLimitMiddleware(http.HandlerFunc(auth.GoogleLoginHandler), limiter))
+	// mux.Handle("/auth/google/callback", rateLimitMiddleware(http.HandlerFunc(auth.GoogleCallbackHandler), limiter))
+	// mux.Handle("/auth/github/login", rateLimitMiddleware(http.HandlerFunc(auth.GitHubHandler), limiter))
+	// mux.Handle("/auth/github/callback", rateLimitMiddleware(http.HandlerFunc(auth.GitHubCallbackHandler), limiter))
 
 	tlsConfig := &tls.Config{
 		MinVersion: tls.VersionTLS12,
